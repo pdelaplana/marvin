@@ -71,12 +71,23 @@ The workflow file (`.github/workflows/deploy.yml`) includes:
 
 ## Deployment Process
 
-### Automatic Deployment
+### Automatic Deployment (Push to main)
 1. Push code to `main` branch
 2. GitHub Actions automatically triggers
 3. Workflow runs database migrations
 4. Deploys Edge Functions to production
 5. Provides deployment confirmation
+
+### Manual Deployment (workflow_dispatch)
+1. Go to your GitHub repository
+2. Click "Actions" tab
+3. Select "Deploy to Supabase" workflow
+4. Click "Run workflow" button
+5. Configure deployment options:
+   - **Environment**: Choose production or staging
+   - **Deploy Edge Functions**: Enable/disable function deployment
+   - **Run Database Migrations**: Enable/disable database updates
+6. Click "Run workflow" to start deployment
 
 ### Manual Deployment (if needed)
 ```bash

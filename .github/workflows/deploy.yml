@@ -5,6 +5,26 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+      deploy_functions:
+        description: 'Deploy Edge Functions'
+        required: false
+        default: true
+        type: boolean
+      deploy_database:
+        description: 'Run Database Migrations'
+        required: false
+        default: true
+        type: boolean
 
 env:
   SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
@@ -13,6 +33,7 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     
     steps:
       - name: Checkout code
@@ -39,16 +60,31 @@ jobs:
         run: supabase link --project-ref $SUPABASE_PROJECT_ID
 
       - name: Run database migrations
+        if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.deploy_database == true)
         run: supabase db push
 
       - name: Deploy Edge Functions
+        if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.deploy_functions == true)
         run: supabase functions deploy join-waitlist
 
       - name: Verify deployment
         run: |
-          echo "✅ Database migrations applied"
-          echo "✅ Edge Functions deployed"
-          echo "🚀 Deployment completed successfully"
+          echo "🚀 Deployment Summary:"
+          echo "Environment: ${{ github.event_name == 'workflow_dispatch' && inputs.environment || 'production' }}"
+          
+          if [[ "${{ github.event_name }}" == "push" ]] || [[ "${{ inputs.deploy_database }}" == "true" ]]; then
+            echo "✅ Database migrations applied"
+          else
+            echo "⏭️ Database migrations skipped"
+          fi
+          
+          if [[ "${{ github.event_name }}" == "push" ]] || [[ "${{ inputs.deploy_functions }}" == "true" ]]; then
+            echo "✅ Edge Functions deployed"
+          else
+            echo "⏭️ Edge Functions deployment skipped"
+          fi
+          
+          echo "🎉 Deployment completed successfully"
 
   test:
     runs-on: ubuntu-latest
