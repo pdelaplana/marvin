@@ -18,7 +18,12 @@ This guide explains how to configure GitHub Actions for automated deployment of 
    - Go to Settings → General
    - Copy the "Reference ID" (this is your `SUPABASE_PROJECT_ID`)
 
-2. **Generate Access Token**:
+2. **Get Database Password**:
+   - In the same project, go to Settings → Database
+   - Copy the database password (you set this when creating the project)
+   - If you forgot it, you can reset it from the Database settings page
+
+3. **Generate Access Token**:
    - Go to Supabase Dashboard
    - Click on your profile (top-right corner)
    - Go to "Access Tokens"
@@ -43,6 +48,10 @@ This guide explains how to configure GitHub Actions for automated deployment of 
    **Secret 2:**
    - Name: `SUPABASE_ACCESS_TOKEN`
    - Value: [Your access token from Step 1]
+
+   **Secret 3:**
+   - Name: `SUPABASE_DB_PASSWORD`
+   - Value: [Your database password from Supabase Dashboard → Settings → Database]
 
 ## Workflow Configuration
 
