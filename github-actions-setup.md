@@ -173,14 +173,28 @@ curl -X POST https://[your-project].supabase.co/functions/v1/join-waitlist \
 
 ### Common Issues
 
-**1. Secret Configuration Errors**
+**1. Authentication Errors during Link**
+```
+failed to connect to postgres: failed SASL auth (FATAL: password authentication failed)
+```
+**Solution A**: The CLI should automatically use your access token for authentication
+- Ensure `SUPABASE_ACCESS_TOKEN` is set correctly
+- Try re-running the deployment
+
+**Solution B**: If access token authentication fails, add database password
+- Go to Supabase Dashboard → Project → Settings → Database
+- Copy your database password (or reset it)
+- Add GitHub secret: `SUPABASE_DB_PASSWORD`
+- Update workflow to use: `supabase link --project-ref $SUPABASE_PROJECT_ID --password $SUPABASE_DB_PASSWORD`
+
+**2. Secret Configuration Errors**
 ```
 Error: Invalid credentials
 ```
 - Verify `SUPABASE_ACCESS_TOKEN` is correct
 - Check `SUPABASE_PROJECT_ID` matches your project
 
-**2. Database Migration Failures**
+**3. Database Migration Failures**
 ```
 Error: Migration failed
 ```
@@ -188,7 +202,7 @@ Error: Migration failed
 - Verify migration SQL syntax
 - Run `supabase db reset` locally first
 
-**3. Function Deployment Errors**
+**4. Function Deployment Errors**
 ```
 Error: Function deployment failed
 ```
@@ -196,7 +210,7 @@ Error: Function deployment failed
 - Verify function imports and dependencies
 - Test function locally before deployment
 
-**4. Workflow Permission Errors**
+**5. Workflow Permission Errors**
 ```
 Error: Workflow run failed due to permissions
 ```
