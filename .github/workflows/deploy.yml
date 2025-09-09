@@ -29,6 +29,7 @@ on:
 env:
   SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
   SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+  SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
 
 jobs:
   deploy:
@@ -57,7 +58,7 @@ jobs:
         run: supabase --version
 
       - name: Link Supabase project
-        run: supabase link --project-ref $SUPABASE_PROJECT_ID --password '${{ secrets.SUPABASE_DB_PASSWORD }}'
+        run: supabase link --project-ref $SUPABASE_PROJECT_ID --password $SUPABASE_DB_PASSWORD
 
       - name: Run database migrations
         if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.deploy_database == true)
