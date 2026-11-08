@@ -77,8 +77,8 @@ Started supabase local development setup.
       JWT secret: super-secret-jwt-token-with-at-least-32-characters-long
         anon key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 service_role key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-   S3 Access Key: 625729a08b95bf1b7ff351a663f3a23c
-   S3 Secret Key: 850181e4652dd023b7a98c58ae0d2d34bd487ee0cc3254aed6eda37307425907
+   S3 Access Key: <s3-access-key-from-supabase-status>
+   S3 Secret Key: <s3-secret-key-from-supabase-status>
        S3 Region: local
 ```
 
@@ -123,8 +123,8 @@ Your local development uses these default values:
 ```javascript
 const LOCAL_CONFIG = {
   SUPABASE_URL: 'http://127.0.0.1:54321',
-  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0',
-  SERVICE_ROLE_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU',
+  SUPABASE_ANON_KEY: '<anon-key-from-supabase-status>',
+  SERVICE_ROLE_KEY: '<service-role-key-from-supabase-status>',
   APPLICATION_ID: '48bc5a4b-f8e4-4c4e-8832-1a766715641e' // Created during setup
 };
 ```
@@ -178,7 +178,7 @@ Expected: Health check response or function info
 ```bash
 curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU" \
+  -H "Authorization: Bearer <service-role-key-from-supabase-status>" \
   -d '{
     "applicationId": "48bc5a4b-f8e4-4c4e-8832-1a766715641e",
     "email": "developer-test@example.com",
@@ -328,7 +328,7 @@ For local development, create a `.env.local` file:
 ```bash
 # .env.local (for your frontend)
 NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon-key-from-supabase-status>
 NEXT_PUBLIC_APPLICATION_ID=48bc5a4b-f8e4-4c4e-8832-1a766715641e
 ```
 

@@ -8,7 +8,7 @@
 ## Test Data
 - **Application ID**: `48bc5a4b-f8e4-4c4e-8832-1a766715641e`
 - **Local API URL**: `http://127.0.0.1:54321/functions/v1/join-waitlist`
-- **Service Role Key**: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU`
+- **Service Role Key**: run `supabase status` to get this value
 
 ## 1. Edge Function API Tests
 
@@ -16,7 +16,7 @@
 ```bash
 curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU" \
+  -H "Authorization: Bearer $SERVICE_ROLE_KEY" \
   -d '{"applicationId": "48bc5a4b-f8e4-4c4e-8832-1a766715641e", "email": "test@example.com", "sourceUrl": "http://localhost:3000", "country": "US"}'
 ```
 
@@ -29,7 +29,7 @@ curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist \
 ```bash
 curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU" \
+  -H "Authorization: Bearer $SERVICE_ROLE_KEY" \
   -d '{"applicationId": "48bc5a4b-f8e4-4c4e-8832-1a766715641e", "email": "test@example.com", "sourceUrl": "http://localhost:3000", "country": "US"}'
 ```
 
@@ -42,7 +42,7 @@ curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist \
 ```bash
 curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU" \
+  -H "Authorization: Bearer $SERVICE_ROLE_KEY" \
   -d '{"applicationId": "48bc5a4b-f8e4-4c4e-8832-1a766715641e", "email": "user2@example.com", "sourceUrl": "http://localhost:3000/signup", "country": "CA"}'
 ```
 
@@ -55,7 +55,7 @@ curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist \
 ```bash
 curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU" \
+  -H "Authorization: Bearer $SERVICE_ROLE_KEY" \
   -d '{"applicationId": "invalid-app-id", "email": "test3@example.com", "sourceUrl": "http://localhost:3000", "country": "US"}'
 ```
 
@@ -68,7 +68,7 @@ curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist \
 ```bash
 curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU" \
+  -H "Authorization: Bearer $SERVICE_ROLE_KEY" \
   -d '{"applicationId": "48bc5a4b-f8e4-4c4e-8832-1a766715641e", "email": ""}'
 ```
 
@@ -81,7 +81,7 @@ curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist \
 ```bash
 curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU" \
+  -H "Authorization: Bearer $SERVICE_ROLE_KEY" \
   -d '{"applicationId": "48bc5a4b-f8e4-4c4e-8832-1a766715641e", "email": "invalid-email", "sourceUrl": "http://localhost:3000", "country": "US"}'
 ```
 
@@ -101,7 +101,7 @@ Database constraint error (should be handled by database validation)
 ```javascript
 const CONFIG = {
     SUPABASE_URL: 'http://127.0.0.1:54321',
-    SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0',
+    SUPABASE_ANON_KEY: '$SUPABASE_ANON_KEY',
     APPLICATION_ID: '48bc5a4b-f8e4-4c4e-8832-1a766715641e'
 };
 ```
@@ -161,13 +161,13 @@ LIMIT 10;
 ### Quick Test All Functionality
 ```bash
 # Test 1: Valid request
-curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU" -d '{"applicationId": "48bc5a4b-f8e4-4c4e-8832-1a766715641e", "email": "quicktest@example.com", "sourceUrl": "http://localhost:3000", "country": "US"}'
+curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist -H "Content-Type: application/json" -H "Authorization: Bearer $SERVICE_ROLE_KEY" -d '{"applicationId": "48bc5a4b-f8e4-4c4e-8832-1a766715641e", "email": "quicktest@example.com", "sourceUrl": "http://localhost:3000", "country": "US"}'
 
 # Test 2: Duplicate prevention
-curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU" -d '{"applicationId": "48bc5a4b-f8e4-4c4e-8832-1a766715641e", "email": "quicktest@example.com", "sourceUrl": "http://localhost:3000", "country": "US"}'
+curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist -H "Content-Type: application/json" -H "Authorization: Bearer $SERVICE_ROLE_KEY" -d '{"applicationId": "48bc5a4b-f8e4-4c4e-8832-1a766715641e", "email": "quicktest@example.com", "sourceUrl": "http://localhost:3000", "country": "US"}'
 
 # Test 3: Invalid app ID
-curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImV4cCI6MTk4MzgxMjk5Nn0.EGIM96RAZx35lJzdJsyH-qQwv8Hdp7fsn3W0YpN81IU" -d '{"applicationId": "invalid-id", "email": "test@example.com", "sourceUrl": "http://localhost:3000", "country": "US"}'
+curl -X POST http://127.0.0.1:54321/functions/v1/join-waitlist -H "Content-Type: application/json" -H "Authorization: Bearer $SERVICE_ROLE_KEY" -d '{"applicationId": "invalid-id", "email": "test@example.com", "sourceUrl": "http://localhost:3000", "country": "US"}'
 ```
 
 ## Test Results Expected

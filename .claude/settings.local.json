@@ -3,7 +3,9 @@
     "allow": [
       "Bash(npm install:*)",
       "mcp__context7__resolve-library-id",
-      "mcp__context7__get-library-docs"
+      "mcp__context7__get-library-docs",
+      "Bash(grep -n \"supabase\\\\.co\\\\|https://.*project\\\\|SUPABASE_URL\\\\s*=\\\\s*https\\\\|supabase_url\\\\s*=\\\\s*https\" docs/*.md testing-steps.md)",
+      "Bash(grep -n \"eyJ\\\\|key-\\\\|password\\\\|secret\" .github/workflows/deploy.yml supabase/functions/**/*.ts supabase/functions/_shared/*.ts)"
     ],
     "deny": [],
     "ask": []
